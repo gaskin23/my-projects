@@ -15,7 +15,7 @@ def error():
 
 @app.route('/hello')
 def hello():
-    return f'<h1>Hello, World! </h1>'
+    return f'<h1>Merhaba! </h1>'
 
 @app.route('/admin')
 def admin():
@@ -56,4 +56,5 @@ def evens():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)
