@@ -25,8 +25,6 @@ VALUES
 	("Tuncay", "tuncay@porche.com"),
     ("Selman", "selman@tesla.com");
 """
-
-
 # - Execute sql commands and commit them
 db.session.execute(drop_table)
 db.session.execute(users_table)
@@ -44,7 +42,6 @@ def find_email(keyword):
     if not any(user_emails):
         user_emails = [("Not Found", "Not Found")]
     return user_emails
-
 
 # - Write a function named `insert_email` which adds new email to users table the db.
 def insert_email(name,email):
@@ -67,7 +64,6 @@ def insert_email(name,email):
         response = f"User {name} already exist"
     return response
 
-
 # - Write a function named `emails` which finds email addresses by keyword using `GET` and `POST` methods,
 # - using template files named `emails.html` given under `templates` folder
 # - and assign to the static route of ('/')
@@ -85,7 +81,15 @@ def emails():
 # - Write a function named `add_email` which inserts new email to the database using `GET` and `POST` methods,
 # - using template files named `add-email.html` given under `templates` folder
 # - and assign to the static route of ('/add')
-
+@app.route('/add', methods=['GET', 'POST'])
+def add_email():
+    if request.method == 'POST':
+        user_app_name = request.form['username']
+        user_app_email = request.form['useremail']
+        result_app = insert_email(user_app_name, user_app_email)
+        return render_template('add-email.html', result_html=result_app, show_result=True)
+    else:
+        return render_template('add-email.html', show_result=False)
 
 
 # - Add a statement to run the Flask application which can be reached from any host on port 80.
