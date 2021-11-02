@@ -12,13 +12,13 @@ def convert(decimal_num):
 
 @app.route('/', methods=['GET'])
 def main_get():
-    return render_template('index.html', developer_name='Sezgin', not_valid=False)
+    return render_template('index.html', developer_name='gaskin', not_valid=False)
 
 @app.route('/', methods=['POST'])
 def main_post():
     alpha = request.form['number']
     if not alpha.isdecimal():
-        return render_template('index.html', developer_name='Sezgin', not_valid=True)
+        return render_template('index.html', developer_name='gaskin', not_valid=True)
 
     number = int(alpha)
     if not 0 < number < 4000:
